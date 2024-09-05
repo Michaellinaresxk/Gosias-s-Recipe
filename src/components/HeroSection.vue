@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import heroImage from '@/assets/img/main-hero-img.jpg';
+import SearchRecipe from './SearchRecipe.vue';
 
 //   defineProps<{
 //   heroTitle: string
@@ -9,6 +10,9 @@ import heroImage from '@/assets/img/main-hero-img.jpg';
 
 const herotitle = ref("The Gosia`s recipes")
 
+const fetchQuery = (payload: string) => {
+  console.log(payload)
+}
 
 </script>
 
@@ -25,5 +29,6 @@ const herotitle = ref("The Gosia`s recipes")
             </v-img>
 
       </v-row>
+      <SearchRecipe @handleSearchRecipe="fetchQuery" />
     </v-container>
 </template>
