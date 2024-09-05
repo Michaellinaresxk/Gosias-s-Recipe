@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import {RouterView } from 'vue-router'
  
 import TheAppBar  from '@/components/TheAppBar.vue'
 import TheFooter  from '@/components/TheFooter.vue'
@@ -19,4 +19,4 @@ import TheFooter  from '@/components/TheFooter.vue'
 
 
   <TheFooter />
-</template>
+</template> 
