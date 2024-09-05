@@ -1,5 +1,4 @@
 <template>
-    <v-form @submit.prevent="handleSearchRecipe">
       <v-text-field
         :loading="loading"
         append-inner-icon="mdi-magnify"
@@ -9,10 +8,9 @@
         hide-details
         single-line
         v-model="recipeQuery"
-
+  @keyup.enter="handleSearchRecipe"
         required
       ></v-text-field>
-    </v-form>
 </template>
 <script setup lang="ts">
   import { ref } from "vue";

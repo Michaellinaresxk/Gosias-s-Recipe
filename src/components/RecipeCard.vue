@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { defineProps } from 'vue'
 
-  const loading = ref(false)
-  const selection = ref(1)
-
+defineProps({
+  recipe: Object,
+  baseUri: String
+})
 </script>
 
 <template>
@@ -22,14 +23,10 @@ import { ref } from "vue"
       ></v-progress-linear>
     </template>
 
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-      cover
-    ></v-img>
+    <v-img :src="baseUri + recipe.image" height="200px" cover />
 
     <v-card-item>
-      <v-card-title>Cafe Badilico</v-card-title>
+      <v-card-title>{{ recipe.title }}</v-card-title>
 
       <v-card-subtitle>
         <span class="me-1">Health Score: 100%</span>
