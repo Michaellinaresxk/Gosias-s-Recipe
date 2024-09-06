@@ -9,12 +9,7 @@ import TheFooter  from '@/components/TheFooter.vue'
 <template>
   <RouterView />
   <header>
- 
-    <div class="wrapper">
-      <nav>
-        <TheAppBar />
-      </nav>
-    </div>
+      <TheAppBar />
   </header>
 
 

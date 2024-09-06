@@ -12,12 +12,7 @@ const handleSearchRecipe = (recipeQuery: string) => {
 <template>
   <v-container fluid>
     <v-row>
-      <v-img :src="heroImage" class="align-center hero-image" height="300px" cover>
-        <v-card-title class="text-center">
-          <text-h1 class="font-weight-black">The Gosia's Recipes</text-h1>
-        </v-card-title>
-      </v-img>
+      <v-img :src="heroImage" class="align-center hero-image" height="300px" cover />
     </v-row>
-    <SearchRecipe @handleSearchRecipe="handleSearchRecipe" />
   </v-container>
 </template>

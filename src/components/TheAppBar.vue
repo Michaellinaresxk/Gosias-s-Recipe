@@ -8,12 +8,10 @@ import { RouterLink } from 'vue-router'
              color="orange-lighten-2"
              density="compact"
            >
-             <template v-slot:prepend>
-               <v-app-bar-nav-icon></v-app-bar-nav-icon>
-             </template>
+
 
              <RouterLink to="/">
-               <v-app-bar-title >Eat-Smart</v-app-bar-title>
+               <v-app-bar-title class="ml-5">Eat-Smart</v-app-bar-title>
              </RouterLink>
      
              <template v-slot:append>
