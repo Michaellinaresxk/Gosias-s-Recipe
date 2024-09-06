@@ -2,6 +2,7 @@
 import RecipeCardList from "@/components/RecipeCardList.vue"
 import HeroSection from "@/components/HeroSection.vue"
 import { useRecipesStore } from '../stores/recipes'
+import { onMounted } from "vue"
 
 
 // Referencia al store de recetas
@@ -11,6 +12,12 @@ const recipeStore = useRecipesStore()
 const searchRecipes = (query: string) => {
   recipeStore.searchRecipes(query)
 }
+
+onMounted(() => {
+  searchRecipes('salad')
+})
+
+
 </script>
 
 <template>
