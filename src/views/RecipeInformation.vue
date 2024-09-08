@@ -17,14 +17,24 @@ onMounted(() => {
 })
 
 
+//  color: #6c757d;   pra los titulos 
+//  otro    color: #42a3b8;      color: #f9c132;
+
 // const formattedSummary = computed(() => {
-//   return recipeStore.selectedRecipe.summary.split('.').map((sentence: string) => sentence.trim() + '.')
+//   return recipeStore.selectedRecipe.summary
+//     .replace(/<b>(.*?)<\/b>/g, '<strong>$1</strong>') // Reemplaza <b> por <strong>
+//     // .replace(/\./g, '.<br>') // Agrega saltos de línea al final de cada oración
+// })
+
+// const formattedInstructions = computed(() => {
+//   return recipeStore.selectedRecipe.instructions
+//     .replace(/<b>(.*?)<\/b>/g, '<strong>$1</strong>') // Reemplaza <b> por <strong>
+//     // .replace(/\./g, '.<br>') // Agrega saltos de línea al final de cada oración
 // })
 
 
 // aggregateLikes   - esto es para la valoracion
 
-// const heroImage = recipeStore.selectedRecipe.image;
 
 // dishTypes []
 </script>
@@ -43,17 +53,17 @@ onMounted(() => {
     </v-row>
   </v-container>
 
-        <h2 class="text-center mt-5 mb-10">{{ recipeStore.selectedRecipe.title }}</h2>
-        <h5>{{ recipeStore.selectedRecipe.dishTypes }}</h5>
-        <h5>{{ recipeStore.selectedRecipe.aggregateLikes }}</h5>
-        <NutritionFacts />
+  <!-- <h5>{{ recipeStore.selectedRecipe.dishTypes }}</h5>
+  <h5>{{ recipeStore.selectedRecipe.aggregateLikes }}</h5> -->
+  <NutritionFacts />
+  <h2 class="text-center mt-5 mb-10">{{ recipeStore.selectedRecipe.title }}</h2>
+        <h6 class="title mx-10 mt-10 mb-5">Summary:</h6>
+        <!-- <p class="px-10" v-html="formattedSummary"></p> -->
+     
+  
 
-        <p class="mx-10 mt-10">
-          {{ recipeStore.selectedRecipe.summary }}
-        </p>
-
-        <article>
-          <h6 class="title px-10 mt-10">Ingredients:</h6>
+        <article class="d-flex justify-center flex-column align-center">
+          <h6 class="title  mt-10">Ingredients:</h6>
             <div class="ingredients-list mt-5 px-10 mb-10">
               <ul>
                 <li
@@ -69,9 +79,7 @@ onMounted(() => {
         <article class="mx-10">
           <div class="preparation">
             <h6 class="title mb-5">Preparation:</h6>
-              <p class="instruction">
-                {{ recipeStore.selectedRecipe.instructions }}
-              </p>
+            <!-- <p v-html="formattedInstructions"></p> -->
           </div>
           <div class="secundary-info">
             <span class="badge badge-info"
@@ -83,34 +91,31 @@ onMounted(() => {
           </div>
         </article>
 
-        <div class="mx-10 mb-10"  >
-          <h5 class="title mb-3 mt-5">Nutrition Facts:</h5>
+        <div class="mx-10 mb-10">
+          <h5 class="title mb-5 mt-10">Recipe Info:</h5>
 
-          <v-alert border="start" border-color="light-green-accent-4">
-            <strong class="custom-color">Vegan:</strong>
+          <div class="notice notice-info ">
+            <strong class="notice-warning">Vegan:</strong>
             {{ recipeStore.selectedRecipe.vegan }}
-          </v-alert>
+          </div>
 
-          <v-alert class="mt-2" border="start" border-color="light-blue-accent-4">
-            <div class="notice notice-warning">
+     
+            <div class="notice notice-success">
               <strong>Is a popular Recipe ?</strong>
               {{ recipeStore.selectedRecipe.veryPopular }}
             </div>
-          </v-alert>
 
-          <v-alert class="mt-2" border="start" border-color="light-blue-lighten-4">
-            <div class="notice notice-warning">
+
+            <div class="notice notice-purple">
               <strong>Vegetarian ?</strong>
               {{ recipeStore.selectedRecipe.vegetarian }}
             </div>
-          </v-alert>
 
-          <v-alert class="mt-2" border="start" border-color="amber-darken-1">
+
             <div class="notice notice-warning">
               <strong color="amber-darken-1">Very Healthy:</strong>
               {{ recipeStore.selectedRecipe.veryHealthy }}
             </div>
-          </v-alert>
         </div>
       </div>
 
@@ -124,4 +129,38 @@ onMounted(() => {
   color: #393939;
 }
 
+.notice {
+  padding: 15px;
+  background-color: #fafafa;
+  border-left: 6px solid #7f7f84;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+}
+.notice-success  {
+  border-color:#80d651;
+}
+.notice-success > strong {
+  color: #80d651;
+}
+.notice-info {
+  border-color: #45abcd;
+}
+.notice-info > strong {
+  color: #45abcd;
+}
+.notice-warning {
+  border-color: #feaf20;
+}
+.notice-warning > strong {
+  color: #feaf20;
+}
+
+.notice-purple {
+  border-color: #a045cd;
+}
+.notice-purple > strong {
+  color: #a045cd;
+}
 </style>
