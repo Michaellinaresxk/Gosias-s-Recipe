@@ -48,19 +48,3 @@ const handleRecipeInformation = (id: string) => {
     </v-card-actions>
   </v-card>
 </template>
-<style scoped>
-.badge {
-background-color: #656262;
-margin-right:20px;
-padding: 1px 10px;
-color: aliceblue;
-border-radius: 5px;
-font-size: .7em;
-font-weight: bold;
-}
-
-.badge-info {
-  background-color: #078293;
-}
-
-</style>
