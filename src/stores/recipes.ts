@@ -20,13 +20,12 @@ export const useRecipesStore = defineStore('recipes', () => {
       recipes.value = results
       baseUri.value = uri
     } catch (err) {
-      console.error(err)
-      error.value = 'Failed to fetch recipes. Please try again.'
+      console.error('Error en searchRecipes:', err)
+      error.value = 'Falló la búsqueda de recetas. Por favor, inténtalo de nuevo.'
     } finally {
       loading.value = false
     }
   }
-
   // Función para buscar una receta por ID
   const fetchRecipeById = async (id: string) => {
     loading.value = true
@@ -47,7 +46,7 @@ export const useRecipesStore = defineStore('recipes', () => {
     baseUri,
     loading,
     error,
-    selectedRecipe, // Retornamos la receta seleccionada
+    selectedRecipe,
     searchRecipes,
     fetchRecipeById // Retornamos la nueva función
   }

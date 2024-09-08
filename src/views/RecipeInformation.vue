@@ -2,8 +2,6 @@
 import { computed, onMounted } from 'vue'
 import { useRecipesStore } from '../stores/recipes'
 import NutritionFacts from '../components/NutritionFacts.vue'
-import HeroSection from '@/components/HeroSection.vue';
-import heroImage from '@/assets/img/main-hero-img.jpg';
 
 const props = defineProps<{
   id: string
@@ -17,10 +15,13 @@ onMounted(() => {
 })
 
 
-// const formattedSummary = computed(() => {
-//   return recipeStore.selectedRecipe.summary.split('.').map((sentence: string) => sentence.trim() + '.')
-// })
+const formattedSummary = computed(() => {
+  return recipeStore.selectedRecipe.summary.split('.').map((sentence: string) => sentence.trim() + '.')
+})
 
+const formattedInstructions = computed(() => {
+  return recipeStore.selectedRecipe.instructions.split('.').map((sentence: string) => sentence.trim() + '.')
+})
 
 // aggregateLikes   - esto es para la valoracion
 
@@ -44,13 +45,11 @@ onMounted(() => {
   </v-container>
 
         <h2 class="text-center mt-5 mb-10">{{ recipeStore.selectedRecipe.title }}</h2>
-        <h5>{{ recipeStore.selectedRecipe.dishTypes }}</h5>
-        <h5>{{ recipeStore.selectedRecipe.aggregateLikes }}</h5>
+        <!-- <h5>{{ recipeStore.selectedRecipe.dishTypes }}</h5>
+        <h5>{{ recipeStore.selectedRecipe.aggregateLikes }}</h5> -->
         <NutritionFacts />
-
-        <p class="mx-10 mt-10">
-          {{ recipeStore.selectedRecipe.summary }}
-        </p>
+        <h6 class="title mx-10 mb-5 mt-10">Summary:</h6>
+        <p class="mx-10" v-html="formattedSummary"></p>
 
         <article>
           <h6 class="title px-10 mt-10">Ingredients:</h6>
@@ -69,9 +68,8 @@ onMounted(() => {
         <article class="mx-10">
           <div class="preparation">
             <h6 class="title mb-5">Preparation:</h6>
-              <p class="instruction">
-                {{ recipeStore.selectedRecipe.instructions }}
-              </p>
+  
+              <p v-html="formattedInstructions"></p>
           </div>
           <div class="secundary-info">
             <span class="badge badge-info"
@@ -83,7 +81,7 @@ onMounted(() => {
           </div>
         </article>
 
-        <div class="mx-10 mb-10"  >
+        <div class="mx-10 mb-10 mt-10"  >
           <h5 class="title mb-3 mt-5">Nutrition Facts:</h5>
 
           <v-alert border="start" border-color="light-green-accent-4">
@@ -121,7 +119,21 @@ onMounted(() => {
 
 .title {
   font-size: 1.2em;
-  color: #393939;
+  color: #656262;
+}
+
+.badge {
+background-color: #656262;
+margin-right:20px;
+padding: 5px 10px;
+color: aliceblue;
+border-radius: 5px;
+font-size: .9em;
+font-weight: bold;
+}
+
+.badge-info {
+  background-color: #078293;
 }
 
 </style>

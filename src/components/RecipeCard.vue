@@ -14,15 +14,11 @@ const handleRecipeInformation = (id: string) => {
   emit('handleRecipeInformation', id)
 }
 
-
-
 </script>
 
 <template>
   <v-card
-    :disabled="loading"
-    :loading="loading"
-    class="mx-auto my-12"
+    class="mx-auto my-2"
     max-width="300"
   >
     <template v-slot:loader="{ isActive }">
@@ -34,24 +30,12 @@ const handleRecipeInformation = (id: string) => {
       ></v-progress-linear>
     </template>
 
-    <v-img :src="baseUri + recipe.image" height="150px" cover />
+    <v-img :src="baseUri + recipe.image" height="200px" cover />
 
     <v-card-item>
       <v-card-title>{{ recipe.title }}</v-card-title>
 
     </v-card-item>
-
-
-    <v-divider class="mx-4 mb-1"></v-divider>
-
-    <v-card-title>Information:</v-card-title>
-
-    <div class="px-4 mb-2">
-      <v-chip-group v-model="selection">
-        <v-chip   color="cyan" >Servings: {{ recipe.servings}} </v-chip>
-        <v-chip   color="cyan">Ready in: {{ recipe.readyInMinutes}} </v-chip>
-      </v-chip-group>
-    </div>
 
     <v-card-actions>
       <v-btn
@@ -64,3 +48,19 @@ const handleRecipeInformation = (id: string) => {
     </v-card-actions>
   </v-card>
 </template>
+<style scoped>
+.badge {
+background-color: #656262;
+margin-right:20px;
+padding: 1px 10px;
+color: aliceblue;
+border-radius: 5px;
+font-size: .7em;
+font-weight: bold;
+}
+
+.badge-info {
+  background-color: #078293;
+}
+
+</style>

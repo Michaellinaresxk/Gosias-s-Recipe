@@ -4,22 +4,33 @@ axios.defaults.headers.common['X-RapidAPI-Host'] = import.meta.env.VITE_BASE_URL
 axios.defaults.headers.common['X-RapidAPI-Key'] = import.meta.env.VITE_APIKEY
 
 // returns recipes searched from input
-export const getRecipes = (input: string) => {
+export const getRecipes = async (input: string) => {
   const config = {
     params: {
       number: 10,
       query: input
     }
   }
-  return axios
-    .get('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search', config)
-    .then((response) => {
-      console.log(response)
+
+  try {
+    const response = await axios.get(
+      'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search',
+      config
+    )
+
+    console.log(response) // Verifica que estás recibiendo una respuesta válida
+
+    if (response.data && response.data.results && response.data.baseUri) {
       const baseUri = response.data.baseUri
       const recipes = response.data.results
       return { recipes, baseUri }
-    })
-    .catch((err) => console.log(err))
+    } else {
+      throw new Error('La estructura de los datos no es la esperada')
+    }
+  } catch (err) {
+    console.error('Error al obtener las recetas:', err)
+    throw err // Lanza el error para que el componente pueda manejarlo
+  }
 }
 
 export const getRecipeInformation = (id: string) => {

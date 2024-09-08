@@ -11,12 +11,9 @@ import { RouterLink } from 'vue-router'
 
 
              <RouterLink to="/">
-               <v-app-bar-title class="ml-5">Eat-Smart</v-app-bar-title>
+               <v-app-bar-title class="ml-5 mb-1">Eat-Smart</v-app-bar-title>
              </RouterLink>
      
-             <template v-slot:append>
-               <v-btn icon="mdi-dots-vertical"></v-btn>
-             </template>
            </v-app-bar>
      </v-layout>
 </template>
