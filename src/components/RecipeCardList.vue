@@ -14,8 +14,8 @@ const router = useRouter()
 
 const goToRecipeInformation = (id: string) => {
   router.push({
-    name: 'RecipeInformation', 
-    params: { id },
+    name: 'RecipeInformation',  // Nombre de la ruta donde se muestra la información de la receta
+    params: { id },             // Pasamos el ID de la receta como parámetro
   })
 }
 
