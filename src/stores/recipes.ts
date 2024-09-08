@@ -1,7 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getRecipes, getRecipeInformation } from '../api/ApiConfig'
-
 export const useRecipesStore = defineStore('recipes', () => {
   const recipes = ref([])
   const baseUri = ref('')
@@ -17,11 +16,18 @@ export const useRecipesStore = defineStore('recipes', () => {
     error.value = null
     try {
       const { recipes: results, baseUri: uri } = await getRecipes(query)
+
+      if (results.length === 0) {
+        throw new Error('No recipes found')
+      }
+
       recipes.value = results
       baseUri.value = uri
     } catch (err) {
       console.error(err)
       error.value = 'Failed to fetch recipes. Please try again.'
+      recipes.value = [] // Asegurarse de vaciar el array si ocurre un error
+      baseUri.value = ''
     } finally {
       loading.value = false
     }
