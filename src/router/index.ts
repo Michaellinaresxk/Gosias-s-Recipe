@@ -7,26 +7,66 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        transition: 'fade',
+        title: 'Home - Eat Smart'
+      }
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
+      meta: {
+        transition: 'slide-left',
+        title: 'About - Eat Smart'
+      }
     },
     {
       path: '/recipe/:id',
       name: 'RecipeInformation',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/RecipeInformation.vue'),
-      props: true
+      props: true,
+      meta: {
+        transition: 'zoom',
+        title: 'Recipe Details - Eat Smart'
+      }
     }
-  ]
+  ],
+  // Scroll behavior
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth'
+      }
+    } else {
+      return {
+        top: 0,
+        behavior: 'smooth'
+      }
+    }
+  }
+})
+
+// Navigation guards
+router.beforeEach((to, from, next) => {
+  // Update document title
+  document.title = (to.meta.title as string) || 'Eat Smart - Recipe App'
+
+  // Add loading class
+  document.body.classList.add('page-loading')
+
+  next()
+})
+
+router.afterEach(() => {
+  // Remove loading class after transition
+  setTimeout(() => {
+    document.body.classList.remove('page-loading')
+  }, 400)
 })
 
 export default router
